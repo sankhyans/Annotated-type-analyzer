@@ -59,7 +59,8 @@ For example, the constraint set generated from program t11.fun is :
 {$8} >= {$1}
 {$3} >= {$13}
 {$8} >= {$4}
-This can be explained as shown in the figure on the right.
+
+This can be explained as:
 { $3 } >= { $10, $13}
 { $2 } >= { $2, $5}
 { $8 } >= { $1, $4}
@@ -85,17 +86,15 @@ java -cp path/to/antlr:path/to/Main Main <input_file>
 in which:
 path/to/antlr: the path to ANTLR library, e.g ./lib/antlr-4.5-complete.jar
 path/to/Main: the path to folder where Main class is built
+
 Main: name of Main class of this project
-Example:
-java -cp funla/lib/antlr-4.5-complete.jar:bin/ Main abs.fun
+Example: java -cp funla/lib/antlr-4.5-complete.jar:bin/ Main abs.fun
 
 
 2) From Eclipse:
 For the 1st part -> <filename> or <filename> false
 For the 2nd part -> <filename> true
-Use “true” as the 2nd parameter to the command line in order for the program to run
-the advanced part i.e. for the cons, nil and case expressions.
-Test Case Organization:
-Test cases related to the first part are inside the folder "basic" and test cases related
-to Advanced part are inside the folder “Advanced".
-The output obtained after running this test cases is stored in corresponding txt files.
+Use “true” as the 2nd parameter to the command line in order for the program to run the advanced part i.e. for the cons, nil and case expressions.
+
+Test Case Organization: Test cases related to the first part are inside the folder "basic" and test cases related
+to Advanced part are inside the folder “Advanced". The output obtained after running this test cases is stored in corresponding txt files.
