@@ -1,0 +1,27 @@
+Analyzing file 'funla/test/t4.fun'...
+
+----------------------------------
+Input program:
+
+let y = fun add x => x + x
+in y (add 2)
+
+----------------------------------
+Annotated program:
+
+let y = fun$1 add x => x + x in 
+y (add 2)
+
+----------------------------------
+Annotated typed program:
+
+let [y:Int-$(1)->Int] = fun$1 add [x:Int] : Int-$(1)->Int => x + x in 
+y (add 2)
+
+----------------------------------
+Detail type information:
+
+  fun$1 : Int-$(1)->Int
+  x : Int
+  y : Int-$(1)->Int
+

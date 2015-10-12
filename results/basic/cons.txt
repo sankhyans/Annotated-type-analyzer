@@ -1,0 +1,25 @@
+Analyzing file 'funla/test/cons.fun'...
+
+----------------------------------
+Input program:
+
+let x = Cons(1,Cons(2,Nil)) in
+x
+
+----------------------------------
+Annotated program:
+
+let x = Cons$2(1, Cons$1(2, Nil)) in 
+x
+
+----------------------------------
+Annotated typed program:
+
+let [x:Int List] = Cons$2(1, Cons$1(2, Nil)) in 
+x
+
+----------------------------------
+Detail type information:
+
+  x : Int List
+

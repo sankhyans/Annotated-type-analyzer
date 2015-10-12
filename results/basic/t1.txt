@@ -1,0 +1,29 @@
+Analyzing file 'funla/test/t1.fun'...
+
+----------------------------------
+Input program:
+
+let add = fn x => (fn y => x + y) in
+add 1 2
+
+----------------------------------
+Annotated program:
+
+let add = fn$1 x => fn$2 y => x + y in 
+(add 1) 2
+
+----------------------------------
+Annotated typed program:
+
+let [add:Int-$(1)->(Int-$(2)->Int)] = fn$1 [x:Int] => fn$2 [y:Int] => x + y in 
+(add 1) 2
+
+----------------------------------
+Detail type information:
+
+  add : Int-$(1)->(Int-$(2)->Int)
+  fn$1 : Int-$(1)->(Int-$(2)->Int)
+  fn$2 : Int-$(2)->Int
+  x : Int
+  y : Int
+

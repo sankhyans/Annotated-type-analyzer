@@ -1,0 +1,3 @@
+Analyzing file 'funla/test/t7.fun'...
+
+Variable 'y' is undefined!

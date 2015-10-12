@@ -1,0 +1,29 @@
+Analyzing file 'funla/test/bool.fun'...
+
+----------------------------------
+Input program:
+
+let x = true in
+let y = false in
+x && y
+
+----------------------------------
+Annotated program:
+
+let x = true in 
+let y = false in 
+x && y
+
+----------------------------------
+Annotated typed program:
+
+let [x:Bool] = true in 
+let [y:Bool] = false in 
+x && y
+
+----------------------------------
+Detail type information:
+
+  x : Bool
+  y : Bool
+

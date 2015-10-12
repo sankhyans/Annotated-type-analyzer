@@ -1,0 +1,65 @@
+Analyzing file 'funla/test/t16.fun'...
+
+Constraint Set
+----------------------------------
+{$1} >= {$1}
+{$10} >= {$10}
+{$7} >= {$7}
+{$6} >= {$5}
+{$2} >= {$2}
+{$6} >= {$6}
+{$8} >= {$8}
+{$4} >= {$4}
+----------------------------------
+Input program:
+
+let g = fun map xs =>
+case xs of Cons(f,xs1) => Cons(f, map xs1)
+or Nil => Nil
+in let lst = Cons(fn x => x+3, Cons(fn y => y, Nil))
+in case (g lst ) of Cons (h, hs) => h 4
+or Nil => 0
+
+----------------------------------
+Annotated program:
+
+let g =
+  fun$1 map xs =>
+    case xs of 
+      Cons(f, xs1) => Cons$4(f, map xs1)
+      or Nil => Nil
+in
+let lst = Cons$8(fn$5 x => x + 3, Cons$7(fn$6 y => y, Nil)) in 
+case g lst of 
+  Cons(h, hs) => h 4
+  or Nil => 0
+
+----------------------------------
+Annotated typed program:
+
+let [g:(Int-$(6)->Int) List-$(1)->(Int-$(6)->Int) List] =
+  fun$1 map [xs:(Int-$(6)->Int) List] : (Int-$(6)->Int) List-$(1)->(Int-$(6)->Int) List =>
+    case xs of 
+      Cons([f:Int-$(6)->Int], [xs1:(Int-$(6)->Int) List]) =>
+        Cons$4(f, map xs1)
+      or Nil => Nil
+in
+let [lst:(Int-$(6)->Int) List] =
+  Cons$8(fn$5 [x:Int] => x + 3, Cons$7(fn$6 [y:Int] => y, Nil))
+in
+case g lst of 
+  Cons([h:Int-$(6)->Int], [hs:(Int-$(6)->Int) List]) => h 4
+  or Nil => 0
+
+----------------------------------
+Detail type information:
+
+  f : Int-$(6)->Int
+  fun$1 : (Int-$(6)->Int) List-$(1)->(Int-$(6)->Int) List
+  g : (Int-$(6)->Int) List-$(1)->(Int-$(6)->Int) List
+  h : Int-$(6)->Int
+  hs : (Int-$(6)->Int) List
+  lst : (Int-$(6)->Int) List
+  xs : (Int-$(6)->Int) List
+  xs1 : (Int-$(6)->Int) List
+

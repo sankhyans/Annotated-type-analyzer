@@ -1,0 +1,29 @@
+Analyzing file 'funla/test/t8.fun'...
+
+----------------------------------
+Input program:
+
+let z = 2 in
+(fn z => (fn v => z + v))
+
+----------------------------------
+Annotated program:
+
+let z = 2 in 
+fn$1 z => fn$2 v => z + v
+
+----------------------------------
+Annotated typed program:
+
+let [z:Int] = 2 in 
+fn$1 [z:Int] => fn$2 [v:Int] => z + v
+
+----------------------------------
+Detail type information:
+
+  fn$1 : Int-$(1)->(Int-$(2)->Int)
+  fn$2 : Int-$(2)->Int
+  v : Int
+  z : Int
+  z : Int
+

@@ -1,0 +1,64 @@
+Analyzing file 'funla/test/t10.fun'...
+
+Constraint Set
+----------------------------------
+{$5} >= {$5}
+{$4} >= {$4}
+{$9} >= {$2}
+{$9} >= {$1}
+{$7} >= {$7}
+{$8} >= {$8}
+{$9} >= {$3}
+----------------------------------
+Input program:
+
+let f = fn x => x + 1 in
+let g = fn x => x - 1 in
+let h = fn x => x * 2 in
+let x = fn a => fn b => a b in
+let y = fn a => fn b => a b in
+(x f) 1 + (x g) 1 + (y g) 2 + (y h) 2
+
+----------------------------------
+Annotated program:
+
+let f = fn$1 x => x + 1 in 
+let g = fn$2 x => x - 1 in 
+let h = fn$3 x => x * 2 in 
+let x = fn$4 a => fn$5 b => a b in 
+let y = fn$7 a => fn$8 b => a b in 
+(x f) 1 + (x g) 1 + (y g) 2 + (y h) 2
+
+----------------------------------
+Annotated typed program:
+
+let [f:Int-$(9)->Int] = fn$1 [x:Int] => x + 1 in 
+let [g:Int-$(9)->Int] = fn$2 [x:Int] => x - 1 in 
+let [h:Int-$(9)->Int] = fn$3 [x:Int] => x * 2 in 
+let [x:(Int-$(9)->Int)-$(4)->(Int-$(5)->Int)] = fn$4 [a:Int-$(9)->Int] => fn$5 [b:Int] => a b in 
+let [y:(Int-$(9)->Int)-$(7)->(Int-$(8)->Int)] = fn$7 [a:Int-$(9)->Int] => fn$8 [b:Int] => a b in 
+(x f) 1 + (x g) 1 + (y g) 2 + (y h) 2
+
+----------------------------------
+Detail type information:
+
+  a : Int-$(9)->Int
+  a : Int-$(9)->Int
+  b : Int
+  b : Int
+  f : Int-$(9)->Int
+  fn$1 : Int-$(9)->Int
+  fn$2 : Int-$(9)->Int
+  fn$3 : Int-$(9)->Int
+  fn$4 : (Int-$(9)->Int)-$(4)->(Int-$(5)->Int)
+  fn$5 : Int-$(5)->Int
+  fn$7 : (Int-$(9)->Int)-$(7)->(Int-$(8)->Int)
+  fn$8 : Int-$(8)->Int
+  g : Int-$(9)->Int
+  h : Int-$(9)->Int
+  x : (Int-$(9)->Int)-$(4)->(Int-$(5)->Int)
+  x : Int
+  x : Int
+  x : Int
+  y : (Int-$(9)->Int)-$(7)->(Int-$(8)->Int)
+

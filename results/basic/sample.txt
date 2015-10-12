@@ -1,0 +1,69 @@
+Analyzing file 'funla/test/sample.fun'...
+
+----------------------------------
+Input program:
+
+let append = fun app xs => fn ys =>
+             case xs of Cons(z,sz) => Cons(z, app sz ys)
+                     or Nil        => ys
+in
+let reverse = fun rev vs =>
+              case vs of Cons(u,us) => append (rev us) Cons(u,Nil)
+                      or Nil        => Nil
+in
+reverse Cons(1,Cons(2,Nil))
+
+----------------------------------
+Annotated program:
+
+let append =
+  fun$1 app xs =>
+    fn$2 ys =>
+      case xs of 
+        Cons(z, sz) => Cons$6(z, (app sz) ys)
+        or Nil => ys
+in
+let reverse =
+  fun$7 rev vs =>
+    case vs of 
+      Cons(u, us) => (append (rev us)) (Cons$11(u, Nil))
+      or Nil => Nil
+in
+reverse (Cons$14(1, Cons$13(2, Nil)))
+
+----------------------------------
+Annotated typed program:
+
+let [append:Int List-$(1)->(Int List-$(2)->Int List)] =
+  fun$1 app [xs:Int List] : Int List-$(1)->(Int List-$(2)->Int List) =>
+    fn$2 [ys:Int List] =>
+      case xs of 
+        Cons([z:Int], [sz:Int List]) =>
+          Cons$6(z, (app sz) ys)
+        or Nil => ys
+in
+let [reverse:Int List-$(7)->Int List] =
+  fun$7 rev [vs:Int List] : Int List-$(7)->Int List =>
+    case vs of 
+      Cons([u:Int], [us:Int List]) =>
+        (append (rev us)) (Cons$11(u, Nil))
+      or Nil => Nil
+in
+reverse (Cons$14(1, Cons$13(2, Nil)))
+
+----------------------------------
+Detail type information:
+
+  append : Int List-$(1)->(Int List-$(2)->Int List)
+  fn$2 : Int List-$(2)->Int List
+  fun$1 : Int List-$(1)->(Int List-$(2)->Int List)
+  fun$7 : Int List-$(7)->Int List
+  reverse : Int List-$(7)->Int List
+  sz : Int List
+  u : Int
+  us : Int List
+  vs : Int List
+  xs : Int List
+  ys : Int List
+  z : Int
+

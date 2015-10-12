@@ -1,0 +1,15 @@
+Analyzing file 'funla/test/t3.fun'...
+
+line 3:9 token recognition error at: '%'
+Cannot Unify the types: Int,Int-$(1)->t1
+
+
+
+Since the parser was not able to recognize the operator "%" so it just removed that from the expression and the last statement became
+
+let a = 5 in
+let b = 5 in
+let c = a b in 
+c
+
+a and b has the type Int but in the statement c = a b, the program treats 'a' as a function application with argument 'b' and gets the type 'Int-${1}->t1'. Then it tries to unify the existing 'Int type' with 'Int-${1}->t1' and the program fails.

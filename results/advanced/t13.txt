@@ -1,0 +1,27 @@
+Analyzing file 'funla/test/t13.fun'...
+
+----------------------------------
+Input program:
+
+fn x => if x > 0 then Cons(fn y => y, Nil)
+else Cons(fn z => z, Nil)
+
+----------------------------------
+Annotated program:
+
+fn$1 x =>
+  if x > 0 then Cons$3(fn$2 y => y, Nil) else Cons$5(fn$4 z => z, Nil)
+
+----------------------------------
+Annotated typed program:
+
+fn$1 [x:Int] =>
+  if x > 0 then Cons$3(fn$2 [y:t3] => y, Nil)
+  else Cons$5(fn$4 [z:t3] => z, Nil)
+
+----------------------------------
+Detail type information:
+
+  fn$1 : Int-$(1)->(t3-$(4)->t3) List
+  x : Int
+

@@ -1,0 +1,40 @@
+Analyzing file 'funla/test/t15.fun'...
+
+----------------------------------
+Input program:
+
+let x = fn y => 
+	case y of Cons(z,zs) => 
+		zs 
+	or Nil =>  
+		y
+in x Cons(1, Cons(2, Nil))
+
+----------------------------------
+Annotated program:
+
+let x = fn$1 y => case y of 
+  Cons(z, zs) => zs
+  or Nil => y in 
+x (Cons$4(1, Cons$3(2, Nil)))
+
+----------------------------------
+Annotated typed program:
+
+let [x:Int List-$(1)->Int List] =
+  fn$1 [y:Int List] =>
+    case y of 
+      Cons([z:Int], [zs:Int List]) => zs
+      or Nil => y
+in
+x (Cons$4(1, Cons$3(2, Nil)))
+
+----------------------------------
+Detail type information:
+
+  fn$1 : Int List-$(1)->Int List
+  x : Int List-$(1)->Int List
+  y : Int List
+  z : Int
+  zs : Int List
+

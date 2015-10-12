@@ -1,0 +1,44 @@
+Analyzing file 'funla/test/t9.fun'...
+
+Constraint Set
+----------------------------------
+{$2} >= {$3}
+{$2} >= {$4}
+{$1} >= {$1}
+----------------------------------
+Input program:
+
+let f = fn x => x 1 in
+let g = fn y => y + 2 in
+let h = fn z => z + 3 in
+f g + f h
+
+----------------------------------
+Annotated program:
+
+let f = fn$1 x => x 1 in 
+let g = fn$3 y => y + 2 in 
+let h = fn$4 z => z + 3 in 
+f g + f h
+
+----------------------------------
+Annotated typed program:
+
+let [f:(Int-$(2)->Int)-$(1)->Int] = fn$1 [x:Int-$(2)->Int] => x 1 in 
+let [g:Int-$(2)->Int] = fn$3 [y:Int] => y + 2 in 
+let [h:Int-$(2)->Int] = fn$4 [z:Int] => z + 3 in 
+f g + f h
+
+----------------------------------
+Detail type information:
+
+  f : (Int-$(2)->Int)-$(1)->Int
+  fn$1 : (Int-$(2)->Int)-$(1)->Int
+  fn$3 : Int-$(2)->Int
+  fn$4 : Int-$(2)->Int
+  g : Int-$(2)->Int
+  h : Int-$(2)->Int
+  x : Int-$(2)->Int
+  y : Int
+  z : Int
+

@@ -1,0 +1,3 @@
+Analyzing file 'funla/test/bool.fun'...
+
+Variable 'True' is undefined!

@@ -1,0 +1,55 @@
+Analyzing file 'funla/test/t17.fun'...
+
+Constraint Set
+----------------------------------
+{$5} >= {$5}
+{$2} >= {$2}
+{$3} >= {$3}
+{$2} >= {$1}
+{$6} >= {$6}
+{$4} >= {$4}
+----------------------------------
+Input program:
+
+let lst = Cons(fn x => x + 3, Cons(fn y => y, Nil)) in
+case lst of
+  Cons(x, xs) =>
+    case xs of
+      Cons(y, ys) => y 1
+      or Nil => 2
+  or Nil => 3
+
+----------------------------------
+Annotated program:
+
+let lst = Cons$4(fn$1 x => x + 3, Cons$3(fn$2 y => y, Nil)) in 
+case lst of 
+  Cons(x, xs) =>
+    case xs of 
+      Cons(y, ys) => y 1
+      or Nil => 2
+  or Nil => 3
+
+----------------------------------
+Annotated typed program:
+
+let [lst:(Int-$(2)->Int) List] =
+  Cons$4(fn$1 [x:Int] => x + 3, Cons$3(fn$2 [y:Int] => y, Nil))
+in
+case lst of 
+  Cons([x:Int-$(2)->Int], [xs:(Int-$(2)->Int) List]) =>
+    case xs of 
+      Cons([y:Int-$(2)->Int], [ys:(Int-$(2)->Int) List]) =>
+        y 1
+      or Nil => 2
+  or Nil => 3
+
+----------------------------------
+Detail type information:
+
+  lst : (Int-$(2)->Int) List
+  x : Int-$(2)->Int
+  xs : (Int-$(2)->Int) List
+  y : Int-$(2)->Int
+  ys : (Int-$(2)->Int) List
+

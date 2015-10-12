@@ -1,0 +1,25 @@
+Analyzing file 'funla/test/t5.fun'...
+
+----------------------------------
+Input program:
+
+(fn x => x) (fn y => y)
+
+----------------------------------
+Annotated program:
+
+(fn$1 x => x) (fn$2 y => y)
+
+----------------------------------
+Annotated typed program:
+
+(fn$1 [x:t2-$(2)->t2] => x) (fn$2 [y:t2] => y)
+
+----------------------------------
+Detail type information:
+
+  fn$1 : (t2-$(2)->t2)-$(1)->(t2-$(2)->t2)
+  fn$2 : t2-$(2)->t2
+  x : t2-$(2)->t2
+  y : t2
+

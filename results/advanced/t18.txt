@@ -1,0 +1,65 @@
+Analyzing file 'funla/test/t18.fun'...
+
+Constraint Set
+----------------------------------
+{$10} >= {$10}
+{$3} >= {$5}
+{$2} >= {$2}
+{$3} >= {$7}
+{$1} >= {$1}
+{$9} >= {$9}
+{$8} >= {$8}
+{$3} >= {$6}
+----------------------------------
+Input program:
+
+let f =
+  fun f a =>
+    case a of
+      Cons(x, xs) => x 1 + f xs
+      or Nil => 0
+in
+let lst =
+  Cons(fn x => x + 1, Cons(fn y => y - 1, Cons(fn z => z, Nil)))
+in
+f lst
+
+----------------------------------
+Annotated program:
+
+let f =
+  fun$1 f a =>
+    case a of 
+      Cons(x, xs) => x 1 + f xs
+      or Nil => 0
+in
+let lst =
+  Cons$10(fn$5 x => x + 1, Cons$9(fn$6 y => y - 1, Cons$8(fn$7 z => z, Nil)))
+in
+f lst
+
+----------------------------------
+Annotated typed program:
+
+let [f:(Int-$(3)->Int) List-$(1)->Int] =
+  fun$1 f [a:(Int-$(3)->Int) List] : (Int-$(3)->Int) List-$(1)->Int =>
+    case a of 
+      Cons([x:Int-$(3)->Int], [xs:(Int-$(3)->Int) List]) =>
+        x 1 + f xs
+      or Nil => 0
+in
+let [lst:(Int-$(3)->Int) List] =
+  Cons$10(fn$5 [x:Int] => x + 1, Cons$9(fn$6 [y:Int] => y - 1, Cons$8(fn$7 [z:Int] => z, Nil)))
+in
+f lst
+
+----------------------------------
+Detail type information:
+
+  a : (Int-$(3)->Int) List
+  f : (Int-$(3)->Int) List-$(1)->Int
+  fun$1 : (Int-$(3)->Int) List-$(1)->Int
+  lst : (Int-$(3)->Int) List
+  x : Int-$(3)->Int
+  xs : (Int-$(3)->Int) List
+

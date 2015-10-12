@@ -1,0 +1,3 @@
+Analyzing file 'funla/test/t12.fun'...
+
+Cannot Unify the types: Int,Bool

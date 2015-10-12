@@ -1,0 +1,23 @@
+Analyzing file 'funla/test/t6.fun'...
+
+----------------------------------
+Input program:
+
+((fn x => x + x)  1)
+
+----------------------------------
+Annotated program:
+
+(fn$1 x => x + x) 1
+
+----------------------------------
+Annotated typed program:
+
+(fn$1 [x:Int] => x + x) 1
+
+----------------------------------
+Detail type information:
+
+  fn$1 : Int-$(1)->Int
+  x : Int
+
