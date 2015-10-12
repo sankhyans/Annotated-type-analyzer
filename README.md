@@ -46,17 +46,12 @@ After modifying, you need to call antlr to update Java source code for parser:
 Some test cases are located at: funla/test
 
 
-5. 
-Constraint Explanation :
-I have used the Constraints explained on page number 308,309 in book Principles of
-Program Analysis by Nielson, Nielson and Hankin.
-When the program is executed, it will assign an annotation type to each function
-expression, function type and cons expression. When the types are unified and the
-substitutions are applied on them in the program,
-the annotations and substitutions are also applied at
-the same time.
-For example, the constraint set generated from
-program t11.fun is :
+5.  Constraint Explanation :
+I have used the Constraints explained on page number 308,309 in book Principles of Program Analysis by Nielson, Nielson and Hankin.
+
+When the program is executed, it will assign an annotation type to each function expression, function type and cons expression. When the types are unified and the substitutions are applied on them in the program, the annotations and substitutions are also applied at the same time.
+
+For example, the constraint set generated from program t11.fun is :
 {$3} >= {$10}
 {$2} >= {$2}
 {$2} >= {$5}
@@ -64,15 +59,13 @@ program t11.fun is :
 {$8} >= {$1}
 {$3} >= {$13}
 {$8} >= {$4}
-This can be explained as shown in the figure on the
-right.
+This can be explained as shown in the figure on the right.
 { $3 } >= { $10, $13}
 { $2 } >= { $2, $5}
 { $8 } >= { $1, $4}
 { $7 } >= { $7}
 Failure Handling :
-Whenever the program encounters below mentioned cases, it throws an exception,
-prints the error and terminates.
+Whenever the program encounters below mentioned cases, it throws an exception, prints the error and terminates.
 1) Undefined variable
 2) types that cannot be unified like int, bool
 3) Binary expression with different types
@@ -84,7 +77,9 @@ prints the error and terminates.
 Example:
 8.1) TVar occurs in FunType
 8.2) TVar occurs in ListType
+
 How to run the program :
+
 1) From command line:
 java -cp path/to/antlr:path/to/Main Main <input_file>
 in which:
@@ -93,6 +88,8 @@ path/to/Main: the path to folder where Main class is built
 Main: name of Main class of this project
 Example:
 java -cp funla/lib/antlr-4.5-complete.jar:bin/ Main abs.fun
+
+
 2) From Eclipse:
 For the 1st part -> <filename> or <filename> false
 For the 2nd part -> <filename> true
